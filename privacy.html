@@ -5,16 +5,390 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy - Screen Shotter</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #333; }
-    h1 { color: #111; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      padding: 40px 20px;
+      line-height: 1.7;
+      color: #2d3748;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* Header Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ffa502 50%, #ff9ff3 100%);
+      border-radius: 20px;
+      padding: 50px 40px;
+      text-align: center;
+      margin-bottom: 40px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40%;
+      left: -10%;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero h1 {
+      font-size: 2.6em;
+      color: #ffffff;
+      text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero p {
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 1.1em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.9em;
+      font-weight: 600;
+      margin-top: 15px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Main Content Card */
+    .content {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .intro {
+      background: linear-gradient(135deg, #e0f7fa, #f3e5f5);
+      border-left: 6px solid #00bcd4;
+      padding: 20px 25px;
+      border-radius: 0 15px 15px 0;
+      margin-bottom: 35px;
+      font-size: 1.05em;
+      color: #333;
+    }
+
+    .intro strong {
+      color: #d32f2f;
+    }
+
+    /* Section Cards */
+    .section {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 15px;
+      padding: 25px 30px;
+      margin-bottom: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .section:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .section h2 {
+      font-size: 1.3em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section h2 .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 0.85em;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .section p {
+      margin-bottom: 10px;
+      color: #4a5568;
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .section ul {
+      margin: 10px 0;
+      padding-left: 22px;
+      color: #4a5568;
+    }
+
+    .section ul li {
+      margin-bottom: 8px;
+    }
+
+    .section em {
+      color: #718096;
+      font-size: 0.9em;
+    }
+
+    /* Color themes for each section - rainbow style */
+    .s1 { border-top: 5px solid #ff6b6b; }
+    .s1 h2 { color: #d63031; }
+    .s1 h2 .num { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
+
+    .s2 { border-top: 5px solid #ffa502; }
+    .s2 h2 { color: #e67e22; }
+    .s2 h2 .num { background: linear-gradient(135deg, #ffa502, #ff9f43); }
+
+    .s3 { border-top: 5px solid #ffd32a; }
+    .s3 h2 { color: #f39c12; }
+    .s3 h2 .num { background: linear-gradient(135deg, #ffd32a, #f9ca24); }
+
+    .s4 { border-top: 5px solid #2ed573; }
+    .s4 h2 { color: #27ae60; }
+    .s4 h2 .num { background: linear-gradient(135deg, #2ed573, #7bed9f); }
+
+    .s5 { border-top: 5px solid #1e90ff; }
+    .s5 h2 { color: #0652DD; }
+    .s5 h2 .num { background: linear-gradient(135deg, #1e90ff, #54a0ff); }
+
+    .s6 { border-top: 5px solid #5f27cd; }
+    .s6 h2 { color: #341f97; }
+    .s6 h2 .num { background: linear-gradient(135deg, #5f27cd, #8e44ad); }
+
+    .s7 { border-top: 5px solid #e056fd; }
+    .s7 h2 { color: #be2edd; }
+    .s7 h2 .num { background: linear-gradient(135deg, #e056fd, #fd79a8); }
+
+    .s8 { border-top: 5px solid #00cec9; }
+    .s8 h2 { color: #00b894; }
+    .s8 h2 .num { background: linear-gradient(135deg, #00cec9, #55efc4); }
+
+    .s9 { border-top: 5px solid #636e72; }
+    .s9 h2 { color: #2d3436; }
+    .s9 h2 .num { background: linear-gradient(135deg, #636e72, #b2bec3); }
+
+    .s10 { border-top: 5px solid #fd79a8; }
+    .s10 h2 { color: #e84393; }
+    .s10 h2 .num { background: linear-gradient(135deg, #fd79a8, #fab1a0); }
+
+    .s11 { border-top: 5px solid #6c5ce7; }
+    .s11 h2 { color: #4834d4; }
+    .s11 h2 .num { background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
+
+    .s12 { border-top: 5px solid #fdcb6e; }
+    .s12 h2 { color: #d63031; }
+    .s12 h2 .num { background: linear-gradient(135deg, #fdcb6e, #ffeaa7); }
+
+    /* Service highlight boxes */
+    .service-box {
+      display: inline-block;
+      background: linear-gradient(135deg, #5865F2, #7289da);
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.9em;
+      font-weight: 600;
+      margin: 4px 4px 4px 0;
+    }
+
+    .service-box.telegram {
+      background: linear-gradient(135deg, #0088cc, #229ed9);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #ffffff;
+      font-size: 0.9em;
+      opacity: 0.9;
+    }
+
+    .footer a {
+      color: #ffd32a;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero { padding: 35px 20px; }
+      .hero h1 { font-size: 1.9em; }
+      .content { padding: 25px 20px; }
+      .section { padding: 20px; }
+    }
   </style>
 </head>
 <body>
-  <h1>Privacy Policy</h1>
-  <p>Screen Shotter does not collect, store, or transmit any personal data.</p>
-  <p>All processing is done locally on your device. No images, text, or other data are sent to any external server.</p>
-  <p>No user data is shared with third parties.</p>
-  <p>If you have any questions, please contact the developer.</p>
-  <p><em>Last updated: July 2026</em></p>
+  <div class="container">
+    <!-- Hero Header -->
+    <div class="hero">
+      <h1>🔒 Privacy Policy</h1>
+      <p>for Screen Shotter</p>
+      <div class="badge">📅 Last Updated: August 3, 2026</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <div class="intro">
+        <p><strong>Screen Shotter</strong> is a browser extension that allows users to capture screenshots and send them to Discord or Telegram using webhook/API information configured by the user.</p>
+        <p>This Privacy Policy explains how Screen Shotter collects, processes, stores, and shares information.</p>
+      </div>
+
+      <!-- Section 1 -->
+      <div class="section s1">
+        <h2><span class="num">1</span> Data Collected and Processed</h2>
+        <p>Screen Shotter does not collect personal information such as your name, email address, physical address, financial information, or browsing history.</p>
+        <p>When you use the extension to capture a screenshot, Screen Shotter processes the screenshot image in order to provide its core functionality.</p>
+        <p>The extension may also process configuration information provided by you, such as a Discord webhook URL or Telegram bot/chat configuration, when required to send screenshots to your selected destination.</p>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="section s2">
+        <h2><span class="num">2</span> How Data Is Used</h2>
+        <p>Screenshot data is used solely to perform the action requested by the user: capturing and sending a screenshot to the user's configured Discord or Telegram destination.</p>
+        <p>Screen Shotter does not use screenshot content for advertising, profiling, analytics, tracking, or marketing purposes.</p>
+      </div>
+
+      <!-- Section 3 -->
+      <div class="section s3">
+        <h2><span class="num">3</span> Data Transmission</h2>
+        <p>When you choose to send a screenshot, the screenshot is transmitted to the third-party service selected and configured by you.</p>
+        <p>Depending on your configuration, screenshot data may be transmitted to:</p>
+        <ul>
+          <li><span class="service-box">Discord</span> — when you configure the extension to send screenshots through a Discord webhook.</li>
+          <li><span class="service-box telegram">Telegram</span> — when you configure the extension to send screenshots through Telegram's services.</li>
+        </ul>
+        <p>Transmission occurs only as necessary to provide the screenshot-sharing functionality requested by the user.</p>
+      </div>
+
+      <!-- Section 4 -->
+      <div class="section s4">
+        <h2><span class="num">4</span> Data Storage</h2>
+        <p>The developer of Screen Shotter does not operate a server or database for storing screenshots.</p>
+        <p>Screen Shotter does not retain copies of screenshots on developer-controlled servers.</p>
+        <p>Configuration information required for the extension to function may be stored locally within your browser using browser/extension storage.</p>
+        <p>Screenshots sent to Discord or Telegram may be stored by those services according to their respective privacy policies and data-retention practices.</p>
+      </div>
+
+      <!-- Section 5 -->
+      <div class="section s5">
+        <h2><span class="num">5</span> Data Sharing</h2>
+        <p>Screen Shotter does not sell user data.</p>
+        <p>Screenshot data is shared only with the third-party service selected by the user for screenshot delivery.</p>
+        <p>The third-party services that may receive data are:</p>
+        <ul>
+          <li><span class="service-box">Discord</span> — Screenshot images may be sent to Discord when the user configures and uses a Discord webhook.</li>
+          <li><span class="service-box telegram">Telegram</span> — Screenshot images may be sent to Telegram when the user configures and uses Telegram for screenshot delivery.</li>
+        </ul>
+        <p>The developer does not share screenshot data with advertisers, data brokers, analytics companies, or other unrelated third parties.</p>
+      </div>
+
+      <!-- Section 6 -->
+      <div class="section s6">
+        <h2><span class="num">6</span> User-Controlled Credentials and Configuration</h2>
+        <p>Webhook URLs, bot tokens, chat identifiers, or similar configuration information supplied by the user are used only to enable the requested integration.</p>
+        <p>Where such configuration is stored by the extension, it is stored locally in the user's browser/extension storage and is not intentionally transmitted to the developer.</p>
+        <p>Users are responsible for protecting their webhook URLs, bot tokens, and other integration credentials.</p>
+      </div>
+
+      <!-- Section 7 -->
+      <div class="section s7">
+        <h2><span class="num">7</span> Browsing Activity</h2>
+        <p>Screen Shotter does not collect or maintain a history of websites visited by users.</p>
+        <p>The extension may access the content displayed in the current browser tab when necessary to capture a screenshot requested by the user.</p>
+        <p>This access is used only to provide screenshot functionality.</p>
+      </div>
+
+      <!-- Section 8 -->
+      <div class="section s8">
+        <h2><span class="num">8</span> Third-Party Services</h2>
+        <p>Screen Shotter integrates with third-party services, including Discord and Telegram.</p>
+        <p>When data is sent to these services, the processing and storage of that data by the third-party service is governed by that service's own terms and privacy policies.</p>
+        <p>Screen Shotter does not control how Discord or Telegram stores data after it has been successfully transmitted to those services.</p>
+      </div>
+
+      <!-- Section 9 -->
+      <div class="section s9">
+        <h2><span class="num">9</span> Data Security</h2>
+        <p>Screen Shotter is designed to limit data processing to what is necessary to provide its screenshot-sharing functionality.</p>
+        <p>The developer does not maintain a database containing users' screenshots or personal information.</p>
+        <p>Users should keep Discord webhook URLs, Telegram bot tokens, and other credentials private because anyone who obtains these credentials may be able to access or use the associated integration.</p>
+      </div>
+
+      <!-- Section 10 -->
+      <div class="section s10">
+        <h2><span class="num">10</span> Children's Privacy</h2>
+        <p>Screen Shotter does not knowingly collect personal information from children.</p>
+      </div>
+
+      <!-- Section 11 -->
+      <div class="section s11">
+        <h2><span class="num">11</span> Changes to This Privacy Policy</h2>
+        <p>This Privacy Policy may be updated if Screen Shotter's functionality or data-handling practices change.</p>
+        <p>Updates will be published on this page along with a revised "Last Updated" date.</p>
+      </div>
+
+      <!-- Section 12 -->
+      <div class="section s12">
+        <h2><span class="num">12</span> Contact</h2>
+        <p>If you have questions about this Privacy Policy or Screen Shotter's data practices, please contact the developer using the contact information provided on the Screen Shotter Chrome Web Store listing.</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>© 2026 Screen Shotter</p>
+    </div>
+  </div>
 </body>
 </html>
